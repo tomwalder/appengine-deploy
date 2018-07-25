@@ -1,8 +1,11 @@
 {
-    "name": "venditan/appengine-deploy",
+    "name": "gear4music/appengine-deploy",
     "description": "Environment and Deployment Manager for Google App Engine Applications",
-    "keywords": ["app engine","deploy","venditan"],
-    "homepage": "https://github.com/Venditan/appengine-deploy",
+    "keywords": ["app engine","deploy","gear4music"],
+    "homepage": "https://github.com/Gear4music/appengine-deploy",
+    "require": {
+        "google/auth": "v1.0.*"
+    },
     "bin": [
         "bin/deploy"
     ]

@@ -1,0 +1,48 @@
+#!/usr/bin/env php
+<?php
+
+require_once(__DIR__ . '/../vendor/autoload.php');
+
+use Google\Auth\ApplicationDefaultCredentials;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+
+try {
+
+    // specify the path to your application credentials
+    putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/../g4m-support-alpha-service.json');
+
+    // define the scopes for your API call
+    $scopes = [
+        'https://www.googleapis.com/auth/appengine.admin',
+        'https://www.googleapis.com/auth/cloud-platform'
+    ];
+
+    // create middleware
+    $middleware = ApplicationDefaultCredentials::getMiddleware($scopes);
+    $stack = HandlerStack::create();
+    $stack->push($middleware);
+
+    // create the HTTP client
+    $client = new Client([
+        'handler' => $stack,
+        'base_uri' => 'https://appengine.googleapis.com',
+        'auth' => 'google_auth'  // authorize all requests
+    ]);
+
+    // make the request
+
+    $response = $client->post('v1/apps/g4m-support-alpha/services/default/versions', [
+            'json' => json_decode(file_get_contents(__DIR__ . '/../build/dep.json'))
+    ]);
+
+    // show the result!
+    print_r((string)$response->getBody());
+
+} catch (\Exception $obj_ex) {
+
+    echo PHP_EOL, $obj_ex->getMessage(), PHP_EOL;
+
+    // print_r($obj_ex);
+
+}
