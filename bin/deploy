@@ -701,6 +701,9 @@ class AppEngineDeploy
             'env_variables:',
         ];
         foreach ($this->arr_env as $str_key => $mix_value) {
+            if ("{" === substr(trim($mix_value), 0, 1)){
+                $mix_value = json_encode($mix_value);
+            }
             $arr_lines[] = '  ' . $str_key . ': ' . $mix_value;
         }
         $this->verbose("Writing " . count($this->arr_env) . " value(s) to temp ENV yaml file");
