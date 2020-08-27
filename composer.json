@@ -1,9 +1,13 @@
 {
-    "name": "venditan/appengine-deploy",
-    "description": "Environment and Deployment Manager for Google App Engine Applications",
-    "keywords": ["app engine","deploy","venditan"],
-    "homepage": "https://github.com/Venditan/appengine-deploy",
-    "bin": [
-        "bin/deploy"
-    ]
+  "name": "venditan/appengine-deploy",
+  "description": "Environment and Deployment Manager for Google App Engine Applications",
+  "keywords": ["app engine","deploy","venditan"],
+  "homepage": "https://github.com/Venditan/appengine-deploy",
+  "bin": [
+      "bin/deploy"
+  ],
+  "require": {
+    "ext-mbstring": "*",
+    "ext-json": "*"
+  }
 }
