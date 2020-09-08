@@ -701,7 +701,7 @@ class AppEngineDeploy
             'env_variables:',
         ];
         foreach ($this->arr_env as $str_key => $mix_value) {
-            if ("{" === substr(trim($mix_value), 0, 1)){
+            if (is_string($mix_value)){
                 $mix_value = json_encode($mix_value);
             }
             $arr_lines[] = '  ' . $str_key . ': ' . $mix_value;
